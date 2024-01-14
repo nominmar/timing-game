@@ -5,6 +5,6 @@
 #include <tuple>
 
 std::pair<int, int> randomMoveParams();
-int randomMove(class Point&);
-int directionalMove(class Point&, class  Point&);
+void randomMove(class Position&);
+void directionalMove(class Position&, class  Position&);
 #endif // !MOVEMENT_H

@@ -3,7 +3,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-class Point
+class Position
 {
 
 private:
@@ -11,14 +11,14 @@ private:
 
 public:
     int x, y;
-    Point(int x, int y) : x(x), y(y) {}
+    Position(int x, int y) : x(x), y(y) {}
 
-    int setGridLimit(const int limit)
+    void setGridLimit(const int limit)
     {
         grid_limit = limit;
     }
 
-    void move(int axis, int direction)
+    void step(int axis, int direction)
     {
         if (axis == 0)
         {

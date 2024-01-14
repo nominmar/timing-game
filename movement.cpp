@@ -14,42 +14,42 @@ std::pair<int, int> randomMoveParams()
     return std::pair(axis, direction == 0 ? -1 : 1);
 }
 
-void randomMove(Point &ref_point)
+void randomMove(Position &ref_pos)
 {
     // Move the refPoint in a random direction along a random axis
     std::pair<int, int> move_params = randomMoveParams();
-    ref_point.move(move_params.first, move_params.second);
+    ref_pos.step(move_params.first, move_params.second);
 }
 
-void directionalMove(Point &ref_point, Point &target_point)
+void directionalMove(Position &ref_point, Position &target_pos)
 {
     // Move the targetPoint in the direction of the refPoint along the axis with the greatest distance between the two points
-    if (abs(ref_point.x - target_point.x) > abs(ref_point.y - target_point.y))
+    if (abs(ref_point.x - target_pos.x) > abs(ref_point.y - target_pos.y))
     {
         // Move along x axis
-        if (ref_point.x > target_point.x)
+        if (ref_point.x > target_pos.x)
         {
             // Move left
-            ref_point.move(0, -1);
+            ref_point.step(0, -1);
         }
         else
         {
             // Move right
-            ref_point.move(0, 1);
+            ref_point.step(0, 1);
         }
     }
     else
     {
         // Move along y axis
-        if (ref_point.y > target_point.y)
+        if (ref_point.y > target_pos.y)
         {
             // Move down
-            ref_point.move(1, -1);
+            ref_point.step(1, -1);
         }
         else
         {
             // Move up
-            ref_point.move(1, 1);
+            ref_point.step(1, 1);
         }
     }
 };
