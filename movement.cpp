@@ -21,13 +21,22 @@ public:
 
     void move(int axis, int direction)
     {
-        if (axis == 0 && x < grid_limit)
+        if (axis == 0)
         {
             x += direction;
+            if (x < 0 || x > grid_limit)
+            {
+                x -= direction;
+            }
         }
         else if (y < grid_limit)
         {
             y += direction;
+            if (y < 0 || y > grid_limit)
+            {
+                y -= direction;
+            }
+            
         }
     }
 };
@@ -41,15 +50,14 @@ std::pair<int, int> randomMoveParams()
     return std::pair(axis, direction == 0 ? -1 : 1);
 }
 
-int randomMove(Point &ref_point)
+void randomMove(Point &ref_point)
 {
     // Move the refPoint in a random direction along a random axis
     std::pair<int, int> move_params = randomMoveParams();
     ref_point.move(move_params.first, move_params.second);
-    return 0;
 }
 
-int directionalMove(Point &ref_point, Point &target_point)
+void directionalMove(Point &ref_point, Point &target_point)
 {
     // Move the targetPoint in the direction of the refPoint along the axis with the greatest distance between the two points
     if (abs(ref_point.x - target_point.x) > abs(ref_point.y - target_point.y))
@@ -80,7 +88,4 @@ int directionalMove(Point &ref_point, Point &target_point)
             ref_point.move(1, 1);
         }
     }
-
-    return 0;
-
 };
